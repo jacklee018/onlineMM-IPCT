@@ -5,27 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.syc</groupId>
-    <artifactId>TrafficCompletionProject</artifactId>
+    <artifactId>onlineMM_IPCT</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!--中心新集群spark版本-->
+        <!-- spark version-->
         <spark.version>3.3.2</spark.version>
         <scala.version>2.12</scala.version>
 
-        <!--北斗集群spark版本-->
-<!--        <spark.version>2.3.0</spark.version>-->
-<!--        <scala.version>2.11</scala.version>-->
 
         <geotools.version>27-SNAPSHOT</geotools.version>
     </properties>
 
-    <!-- 打包的配置 -->
+    <!-- 'Build' Configuration -->
     <build>
         <plugins>
-            <!-- Scala 插件配置更新 -->
+            <!-- Scala Plugin Configuration Updates -->
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
@@ -39,7 +36,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Maven Assembly 插件，用于创建包含依赖的 JAR -->
+            <!-- Maven Assembly Plugin: Create JAR containing dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -47,7 +44,6 @@
                     <archive>
                         <manifest>
                             <mainClass>busGps.GetEveryBusLineWithSP</mainClass>
-                            <!-- 定义主程序运行入口 -->
                         </manifest>
                     </archive>
                     <appendAssemblyId>false</appendAssemblyId>
@@ -65,11 +61,11 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Maven Compiler 插件，配置 Java 编译版本 -->
+            <!-- Maven Compiler Plugin: Configure Java Compiler Version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version> <!-- 使用最新的稳定版本 -->
+                <version>3.8.1</version> <!-- Latest stable version -->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -78,7 +74,7 @@
         </plugins>
     </build>
 
-<!--    添加依赖时请注明用途！！！ -->
+<!--    Please illustrate usage after adding dependencies！！！ -->
     <dependencies>
 
         <!-- EJML Core -->
@@ -100,25 +96,6 @@
             <version>${spark.version}</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.graphhopper/graphhopper-map-matching-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.graphhopper</groupId>-->
-<!--            <artifactId>graphhopper-map-matching-core</artifactId>-->
-<!--            <version>2.0</version>-->
-<!--        </dependency>-->
-
-
-
-<!--        gps路径匹配开源库：https://github.com/bmwcarit/barefoot-->
-        <!-- https://mvnrepository.com/artifact/com.bmw-carit/barefoot -->
-        <!--wiki: https://github.com/bmwcarit/barefoot/wiki-->
-<!--        <dependency>-->
-<!--            <groupId>com.bmw-carit</groupId>-->
-<!--            <artifactId>barefoot</artifactId>-->
-<!--            <version>0.1.5</version>-->
-<!--        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/com.esri.geometry/esri-geometry-api -->
         <dependency>
             <groupId>com.esri.geometry</groupId>
             <artifactId>esri-geometry-api</artifactId>
@@ -132,7 +109,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        以下三个 读取shp文件的geotools库-->
+        <!-- geotools: Read shp files-->
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojson</artifactId>
@@ -155,7 +132,7 @@
             <version>3.1.0</version>
         </dependency>
 
-        <!--excel工具包-->
+        <!--Excel tools-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -173,7 +150,7 @@
             <version>2.0.20</version>
         </dependency>
 
-<!--        postgresql驱动-->
+        <!-- postgresql driver-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -189,13 +166,15 @@
 
     </dependencies>
 
-<!--    开源地理空间基金会osgeo的远程库，有些库的最新版本可能maven中央库里可能没有，因此额外添加以下远程库供查找下载-->
+    <!--    Open source geospatial foundation osgeo remote libraries,
+    some libraries of the latest version of the maven central repository may not be available,
+    so additional remote libraries for finding the download of the following-->
     <repositories>
         <repository>
             <id>osgeo</id>
             <name>OSGeo Release Repository</name>
             <url>https://repo.osgeo.org/repository/release/</url>
-<!--            允许下载snapshots版本的库-->
+            <!-- allow downloading libraries of snapshot version -->
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
